@@ -14,5 +14,6 @@ zephyr_library_sources(
 
 zephyr_library_sources_ifdef(CONFIG_OPENTHREAD_NCP uart.c)
 zephyr_library_sources_ifdef(CONFIG_OPENTHREAD_SHELL shell.c)
+zephyr_library_sources_ifdef(CONFIG_OPENTHREAD_DIAG diag.c)
 
 zephyr_include_directories(.)
