@@ -47,7 +47,7 @@ cpuppr_vevif: &cpuppr_vevif_remote {};
 };
 
 &grtc {
-	owned-channels = <7 8 9 10 11 12 13 14>;
+	owned-channels = <7 8 9 10 11 12 13 14 15>;
 	child-owned-channels = <8 9 10 11 12>;
 	nonsecure-channels = <8 9 10 11 12>;
 	interrupts = <109 NRF_DEFAULT_IRQ_PRIORITY>,
