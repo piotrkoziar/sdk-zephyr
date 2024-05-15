@@ -541,7 +541,7 @@ static int send_release(struct backend_data *dev_data, const uint8_t *buffer,
  * @param[in] size		Actual size of the data, can be smaller than allocated,
  *				but it cannot change number of required blocks.
  *
- * @return			O or negative error code.
+ * @return			number of sent bytes or negative error code.
  */
 static int send_block(struct backend_data *dev_data, enum msg_type msg_type,
 		      uint8_t ept_addr, size_t tx_block_index, size_t size)
@@ -656,7 +656,7 @@ static int match_bound_msg(struct backend_data *dev_data, size_t rx_block_index,
  *
  * @param[in] ept	Endpoint to use.
  *
- * @return		O or negative error code.
+ * @return		number of sent bytes or negative error code.
  */
 static int send_bound_message(struct backend_data *dev_data, struct ept_data *ept)
 {

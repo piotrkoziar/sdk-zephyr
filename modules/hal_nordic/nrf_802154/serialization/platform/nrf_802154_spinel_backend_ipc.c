@@ -128,14 +128,13 @@ static void spinel_packet_send_thread_fn(void *arg1, void *arg2, void *arg3)
 	while (true) {
 		k_sem_take(&send_sem, K_FOREVER);
 		struct ringbuffer *buf = &ring_buffer[rd_idx];
-		uint32_t expected_ret = buf->len;
 
 		LOG_DBG("Sending %u bytes from send thread", buf->len);
 		int ret = ipc_service_send(&ept, buf->data, buf->len);
 
 		rd_idx = get_rb_idx_plus_1(rd_idx);
 
-		if (ret != expected_ret) {
+		if (ret < 0) {
 			nrf_802154_ser_err_data_t err = {
 				.reason = NRF_802154_SERIALIZATION_ERROR_BACKEND_FAILURE,
 			};
