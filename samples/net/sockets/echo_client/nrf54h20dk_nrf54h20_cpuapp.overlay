@@ -14,3 +14,7 @@
 &uart135 {
 	status = "disabled";
 };
+
+&uart136 {
+	/delete-property/ hw-flow-control;
+};
