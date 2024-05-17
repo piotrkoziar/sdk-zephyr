@@ -129,8 +129,10 @@ static void nrf5_get_eui64(uint8_t *mac)
 #if defined(CONFIG_TRUSTED_EXECUTION_NONSECURE) && defined(NRF_FICR_S)
 	soc_secure_read_deviceid(deviceid);
 #else
-	deviceid[0] = nrf_ficr_deviceid_get(NRF_FICR, 0);
-	deviceid[1] = nrf_ficr_deviceid_get(NRF_FICR, 1);
+	/* Use BLE.ADDR for setting EUI64, as this is currently the only feasible
+	   way for getting a to some extent unique device identifier. */
+	deviceid[0] = NRF_FICR->BLE.ADDR[0];
+	deviceid[1] = NRF_FICR->BLE.ADDR[1];
 #endif
 
 	factoryAddress = (uint64_t)deviceid[EUI64_ADDR_HIGH] << 32;
